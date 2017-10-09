@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任意多边形</title>
+</head>
+<body>
+<canvas width="300" height="300"></canvas>
+<script>
+    window.onload = function(){
+        let canvas = document.querySelector('canvas');
+        let ctx = canvas.getContext('2d');
+        poly(5);
+        function poly(n){
+            let rad = Math.PI*2/n;
+            ctx.beginPath();
+            ctx.moveTo(250,150);
+            for(let i=0;i<n;i++){
+                let x = 150+100*Math.cos(rad*i),
+                    y = 150+100*Math.sin(rad*i);
+                ctx.lineTo(x,y);
+            }
+            ctx.closePath();
+//            ctx.strokeStyle='red';
+            ctx.stroke();
+        }
+    }
+</script>
+</body>
+</html>

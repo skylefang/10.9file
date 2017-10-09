@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas width="300" height="300"></canvas>
+<script>
+    window.onload=function(){
+        let canvas = document.querySelector('canvas');
+        let ctx = canvas.getContext('2d');
+        for(let i =0;i<4;i++){
+            for(let j=0;j<3;j++){
+                let x = (2*j+1)*30+j*20,
+                    y = (2*i+1)*30+i*20,
+                    endRod = Math.PI + Math.PI/2*j,
+                    dir = i%2 ? false :true;
+                ctx.beginPath();
+                ctx.arc(x,y,30,0,endRod,dir);
+                ctx.closePath();
+                if(i>1){
+                    ctx.fillStyle = 'yellow';
+                    ctx.fill();
+                }else{
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

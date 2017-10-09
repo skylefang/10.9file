@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画圆</title>
+    <style>
+        canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas width="300" height="300"></canvas>
+<script>
+    window.onload=function(){
+        let canvas = document.querySelector('canvas');
+        let ctx = canvas.getContext('2d');
+        canvas.onmousedown=function(e){
+            let cx = e.offsetX , cy =e.offsetY;
+            canvas.onmousemove=function(e){
+                let ox = e.offsetX , oy = e.offsetY;
+                ctx.clearRect(0,0,canvas.height,canvas.width);
+                let r = Math.sqrt(Math.pow(ox-cx,2)+Math.pow(oy-cy,2))
+                ctx.beginPath();
+                ctx.arc(cx,cy,r,0,Math.PI*2)
+                ctx.strokeStyle = 'red';
+                ctx.stroke();
+            }
+            canvas.onmouseup=function(){
+                canvas.onmousemove = null;
+                canvas.onmouseup =null;
+            }
+
+        }
+    }
+</script>
+</body>
+</html>

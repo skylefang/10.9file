@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画线</title>
+    <style>
+        canvas{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas width="300" height="300"></canvas>
+<button>撤销</button>
+<script>
+    window.onload=function(){
+        let canvas = document.querySelector('canvas');
+        let ctx = canvas.getContext('2d');
+        let btn = document.querySelector('button');
+        let arr = [];
+        canvas.onmousedown=function(e){
+            let cx = e.offsetX , cy =e.offsetY;
+            canvas.onmousemove=function(e){
+                let ox = e.offsetX , oy = e.offsetY;
+                ctx.clearRect(0,0,canvas.height,canvas.width);
+                // 每次画之前先把之前的放进去，先放数组中的最后一个
+                if(arr.length){
+                    ctx.putImageData(arr[arr.length-1],0,0)   // 放入数组的最后一个
+                }
+                ctx.beginPath();
+                ctx.moveTo(cx,cy);
+                ctx.lineTo(ox,oy);
+                ctx.stroke();
+            }
+            canvas.onmouseup=function(){
+                // 将每次画布上的内容存到一个数组中
+                arr.push(ctx.getImageData(0,0,canvas.height,canvas.width));
+                canvas.onmousemove = null;
+                canvas.onmouseup =null;
+            }
+
+        }
+        btn.onclick=function(){
+            if(!arr.length){
+                return;
+            }
+            arr.pop();
+            ctx.clearRect(0,0,canvas.height,canvas.width);
+            ctx.putImageData(arr[arr.length-1],0,0);
+        }
+
+    }
+</script>
+</body>
+</html>

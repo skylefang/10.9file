@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    canvas{
+        border: 1px solid red;
+    }
+</style>
+<body>
+  <canvas width="600" height="300"></canvas>
+  <script>
+      window.onload=function(){
+          let canvas = document.querySelector('canvas');
+          let ctx = canvas.getContext('2d');
+          /*for(let i=0;i<5;i++){
+              for(let j=0;j<10;j++){
+                  ctx.fillStyle=`rgb(${Math.floor(Math.random()*256)},
+                  ${Math.floor(Math.random()*256)},
+                  ${Math.floor(Math.random()*256)})`
+                  ctx.fillRect(j*60,i*60,60,60)
+              }
+          }*/
+
+          ctx.beginPath();
+          ctx.arc(300,150,120,0,Math.PI*2);
+          ctx.closePath();
+          ctx.fillStyle= 'yellow';
+//          ctx.fillStyle=`rgb(${Math.floor(Math.random()*256)},
+//                  ${Math.floor(Math.random()*256)},
+//                  ${Math.floor(Math.random()*256)})`
+          ctx.fill();
+          // 左眼
+          ctx.beginPath();
+          ctx.arc(250,130,20,0,Math.PI,true);
+          ctx.strokeStyle = 'black';
+          ctx.stroke();
+          // 右眼
+          ctx.beginPath();
+          ctx.arc(350,130,20,0,Math.PI,true);
+          ctx.strokeStyle = 'black';
+          ctx.stroke();
+          // 嘴
+          ctx.beginPath();
+          ctx.arc(300,180,40,0,Math.PI);
+
+          ctx.strokeStyle = 'black';
+          ctx.stroke();
+
+
+
+
+//          ctx.arc(-50,100,10,0,Math.PI*2);
+//          ctx.fillStyle = 'white';
+//          ctx.fill();
+
+      }
+  </script>
+
+</body>
+</html>
